@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <div class="wrapper">
@@ -12,44 +12,60 @@
                         Person</button>
                     <button id="saveincrement" onclick="save()">Save
                         Entry</button>
-                </div><br>
-                <h2 class="prev">Pervious Entries</h2><span
-                    id="priviousentry"></span>
-                    
                 </div>
-                <div class="animation" id="animationContainer">
-
+                <br />
+                <h2 class="prev">Pervious Entries</h2>
+                <span id="priviousentry"></span>
             </div>
+            <div class="animation" id="animationContainer"></div>
+        </div>
 
-            <script>
-            let persons = 0;
-            let personvalue = document.getElementById("personvalue");  
-            let priviousentry = document.getElementById("priviousentry");
-            let animationContainer = document.getElementById("animationContainer");
+        <script>
+      let persons = 0;
+      let personvalue = document.getElementById("personvalue");
+      let priviousentry = document.getElementById("priviousentry");
+      let animationContainer = document.getElementById("animationContainer");
 
-            function increment() {
-                persons++;
-                personvalue.innerHTML = persons;
-                updateAnimation();
-            }
+      function increment() {
+        persons++;
+        personvalue.innerHTML = persons;
+        updateAnimation();
+      }
 
-            function save() {
-                priviousentry.innerHTML += persons + " ";
-                persons = 0;
-                personvalue.innerHTML = persons;
-                updateAnimation();
-            }
+      function save() {
+        priviousentry.innerHTML += persons + " ";
+        createBalloons(persons);
+        persons = 0;
+        personvalue.innerHTML = persons;
+        updateAnimation();
+      }
 
-            function updateAnimation() {
-            animationContainer.innerHTML = ""; 
-            for (let i = 0; i < persons; i++) {
-                let img = document.createElement("img");
-                img.src = "assects/img/walking.gif";
-                img.alt = "walking animation";
-                animationContainer.appendChild(img);
-            }
+      function updateAnimation() {
+        animationContainer.innerHTML = "";
+        for (let i = 0; i < persons; i++) {
+          let img = document.createElement("img");
+          img.src = "walking.gif";
+          img.alt = "walking animation";
+          animationContainer.appendChild(img);
         }
-            
-        </script>
-        </body>
-    </html>
+      }
+
+      function createBalloons(persons) {
+        for (let i = 0; i < persons; i++) {
+          var balloon = document.createElement("div");
+          balloon.classList.add("balloon");
+          balloon.textContent = persons; // Number on the balloon
+          document.body.appendChild(balloon);
+
+          // Randomize the horizontal position
+          balloon.style.left = Math.random() * 100 + "vw";
+
+          // Remove the balloon after animation completes
+          balloon.addEventListener("animationend", function () {
+            balloon.remove();
+          });
+        }
+      }
+    </script>
+    </body>
+</html>

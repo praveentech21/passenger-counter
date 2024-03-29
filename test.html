@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balloon Animation</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    background: linear-gradient(to right, #feac5e, #c779d0, #4bc0c8);
+  }
+  .balloon {
+    width: 75px;
+    height: 100px;
+    background-color: pink;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -120px;
+    animation: floatUp 5s forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    color: white;
+  }
+  @keyframes floatUp {
+    to {
+      transform: translateY(-110vh);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<button onclick="createBalloons()">Click me</button>
+<script>
+  function createBalloons(persons) {
+    for (let i = 0; i < 20; i++) {
+      var balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+      balloon.textContent = persons; // Number on the balloon
+      document.body.appendChild(balloon);
+
+      // Randomize the horizontal position
+      balloon.style.left = Math.random() * 100 + 'vw';
+
+      // Remove the balloon after animation completes
+      balloon.addEventListener('animationend', function() {
+        balloon.remove();
+      });
+    }
+  }
+</script>
+</body>
+</html>

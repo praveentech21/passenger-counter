@@ -19,6 +19,27 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.balloon {
+  width: 75px;
+  height: 100px;
+  background-color: blue;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -120px;
+  animation: floatUp 5s forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: white;
+}
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
 .container {
   width: 300px;
   margin: 0 auto;
