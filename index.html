@@ -3,17 +3,53 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="container">
-            <h1>People Counter App</h1>
-            <h2 id="count-el">0</h2>
-            <div class="buttons">
-                <button id="increment-btn" onclick="increment()">Add Person</button>
-                <button id="save-btn" onclick="save()">Save Entry</button>
-            </div><br>
-            <h2 class="prev">Pervious Entries</h2><span id="save-el"></span>
-        </div>
-        <script src="script.js">
-            innerText
+        <div class="wrapper">
+            <div class="container">
+                <h1>People Counter App</h1>
+                <h2 id="personvalue">0</h2>
+                <div class="buttons">
+                    <button id="increseone" onclick="increment()">Add
+                        Person</button>
+                    <button id="saveincrement" onclick="save()">Save
+                        Entry</button>
+                </div><br>
+                <h2 class="prev">Pervious Entries</h2><span
+                    id="priviousentry"></span>
+                    
+                </div>
+                <div class="animation" id="animationContainer">
+
+            </div>
+
+            <script>
+            let persons = 0;
+            let personvalue = document.getElementById("personvalue");  
+            let priviousentry = document.getElementById("priviousentry");
+            let animationContainer = document.getElementById("animationContainer");
+
+            function increment() {
+                persons++;
+                personvalue.innerHTML = persons;
+                updateAnimation();
+            }
+
+            function save() {
+                priviousentry.innerHTML += persons + " ";
+                persons = 0;
+                personvalue.innerHTML = persons;
+                updateAnimation();
+            }
+
+            function updateAnimation() {
+            animationContainer.innerHTML = ""; 
+            for (let i = 0; i < persons; i++) {
+                let img = document.createElement("img");
+                img.src = "assects/img/walking.gif";
+                img.alt = "walking animation";
+                animationContainer.appendChild(img);
+            }
+        }
+            
         </script>
-    </body>
-</html>
+        </body>
+    </html>
